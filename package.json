@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cityssm/simple-password-generator": "^0.6.1",
     "express": "^4.17.1",
+    "generate-password": "^1.5.1",
     "superheroes": "^3.0.0"
   }
 }

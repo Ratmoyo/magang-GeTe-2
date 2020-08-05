@@ -1,5 +1,6 @@
 const express = require('express')
 const superheroes = require('superheroes')
+const generator = require('generate-password')
 const app = express()
 const port = 3000
 
@@ -12,7 +13,7 @@ app.get('/random', (req, res) => {
     res.send('Super Hero anda adalah ' + randsuperheroes)
 })
 
-app.get('/coba', (req, res) => {
+app.get('/nama', (req, res) => {
     //console.log(req.query)
     const nama = req.query.nama
     const alamat = req.query.alamat
@@ -21,6 +22,15 @@ app.get('/coba', (req, res) => {
     }
     res.send('namaku siapa? ' + nama + ' dari ' + alamat)
 })
+
+app.get('/password', (req, res) => {
+    const generatorpass = generator.generate({
+        length: 10,
+        numbers: true
+    });
+    res.send('password anda adalah ' + generatorpass)
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
