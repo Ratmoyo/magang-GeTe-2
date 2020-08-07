@@ -1,37 +1,19 @@
+//import express
 const express = require('express')
-const superheroes = require('superheroes')
-const generator = require('generate-password')
 const app = express()
+//import file route
+const userRouter = require('./routes/user')
+const passRouter = require('./routes/password')
+const rootrouter = require('./routes/root')
+//mengisi port
 const port = 3000
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+//load route
+app.use('/user', userRouter)
+app.use('/password', passRouter)
+app.use('/', rootrouter)
 
-app.get('/random', (req, res) => {
-    const randsuperheroes = superheroes.random()
-    res.send('Super Hero anda adalah ' + randsuperheroes)
-})
-
-app.get('/nama', (req, res) => {
-    //console.log(req.query)
-    const nama = req.query.nama
-    const alamat = req.query.alamat
-    if (nama == undefined || alamat == undefined) {
-        res.send('data yg anda kirim tidak lengkap')
-    }
-    res.send('namaku siapa? ' + nama + ' dari ' + alamat)
-})
-
-app.get('/password', (req, res) => {
-    const generatorpass = generator.generate({
-        length: 10,
-        numbers: true
-    });
-    res.send('password anda adalah ' + generatorpass)
-})
-
-
+//akses port
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
